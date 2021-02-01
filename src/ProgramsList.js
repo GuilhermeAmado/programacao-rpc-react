@@ -13,6 +13,7 @@ const ProgramsList = () => {
 
   useEffect(() => {
     setIsPending(true);
+    setData(null);
     fetch('https://api-programacao-rpc.herokuapp.com/rpc/cronograma/' + date)
       .then((res) => {
         if (!res.ok) {
@@ -21,9 +22,9 @@ const ProgramsList = () => {
         return res.json();
       })
       .then((data) => {
-        setData(data);
         setIsPending(false);
         setError(null);
+        setData(data);
       })
       .catch((err) => {
         setIsPending(false);
@@ -33,8 +34,9 @@ const ProgramsList = () => {
 
   return (
     <>
-      {isPending && <Loader />}
       <div className="accordion rounded bg-white p-3" id="accordionExample">
+        {isPending && <Loader />}
+        {!isPending && error && <Alert />}
         {data &&
           data.data.map((program) => (
             <Program
