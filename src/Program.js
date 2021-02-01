@@ -1,57 +1,59 @@
 import React from 'react';
+import getTime from './helpers/getTime';
 
-const Program = () => {
+const Program = ({
+  media_id,
+  logo,
+  title,
+  description,
+  image,
+  duration,
+  category,
+  start_time,
+}) => {
   return (
-    <div class="card">
-      <div class="card-header" id="headingTwo">
-        <h2 class="mb-0">
+    <div className="card rounded shadow">
+      <div className="card-header" id={media_id}>
+        <h2 className="mb-0">
           <button
-            class="btn btn-link collapsed"
+            className="btn btn-block text-left text-decoration-none collapsed"
             type="button"
             data-toggle="collapse"
-            data-target="#collapseTwo"
+            data-target={'#collapse' + media_id}
             aria-expanded="false"
-            aria-controls="collapseTwo"
+            aria-controls={'#collapse' + media_id}
           >
             <span>
-              <img
-                class="rounded mr-3"
-                src="https://s3.glbimg.com/v1/AUTH_947d0a0390ad47fbba7a4b93423e1004/Logo/5.jpg"
-                alt=""
-              />
+              <img className="rounded mr-3" src={logo} alt="" />
             </span>
-            <span class="badge badge-light border mr-3 p-2">04:00</span>
-            Collapsible Group Item #2
+            <span className="badge badge-light border mr-3 p-2">
+              {getTime(start_time)}
+            </span>
+            {title}
           </button>
         </h2>
       </div>
+
       <div
-        id="collapseTwo"
-        class="collapse"
-        aria-labelledby="headingTwo"
+        id={'collapse' + media_id}
+        className="collapse"
+        aria-labelledby={media_id}
         data-parent="#accordionExample"
       >
-        <div class="card-body">
-          <div class="row">
-            <div class="col-6">
-              <p>
-                Os assuntos mais importantes do Brasil e do mundo, com
-                apresentação de Roberto Kovalick.
-              </p>
+        <div className="card-body">
+          <div className="row">
+            <div className="col-6">
+              <p>{description}</p>
               <hr />
-              <p class="badge badge-light border mr-3 p-2">
-                Categoria: Jornalismo
+              <p className="badge badge-light border mr-3 p-2">
+                Categoria: {category}
               </p>
-              <p class="badge badge-light border mr-3 p-2">
-                Duração: 60 minutos
+              <p className="badge badge-light border mr-3 p-2">
+                Duração: {duration} minutos
               </p>
             </div>
-            <div class="col-6">
-              <img
-                src="https://s3.glbimg.com/v1/AUTH_947d0a0390ad47fbba7a4b93423e1004/Imagem/6682.jpg"
-                alt=""
-                class="rounded img-fluid"
-              />
+            <div className="col-6">
+              <img src={image} alt="" className="rounded img-fluid" />
             </div>
           </div>
         </div>

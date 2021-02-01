@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { DateContext } from './DateContext';
 
 const Header = () => {
-  const today = new Date().toISOString().split('T')[0];
-  const [date, setDate] = useState(today);
+  const [date, setDate] = useContext(DateContext);
   return (
     <header>
       <h1 className="heading text-center mb-3">
